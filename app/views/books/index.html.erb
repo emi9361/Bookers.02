@@ -4,6 +4,7 @@
 
 <p>user infoマイページ</p>
 <p>newbook 投稿機能</p>
+
 <%= form_for(@book, url: new_book_path) do |f| %>
   <% if @book.errors.any? %>
     <div id="error_explanation">
@@ -20,7 +21,6 @@
       <div class="form-group has-icon">
         <label class="control-label sr-only">Title</label><br>
         <%= f.text_field :title, class:"form-control", placeholder:"title" %>
-        <span class="fa fa-building form-control-icon" aria-hidden="true"></span>
       </div>
     </div>
     <div class="col-sm-6">

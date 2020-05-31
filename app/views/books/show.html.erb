@@ -41,6 +41,9 @@
 <% end %>
 <p>form_for</p>
 <p>books一覧</p>
+ <%if @book.user == current_user %>
+ <%= link_to "削除", book_path(@book), method: :delete %>
+ <% end %>
 
 
 
