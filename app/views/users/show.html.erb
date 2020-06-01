@@ -1,11 +1,67 @@
-<h1>Users#showpopopopo</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-<% @books.each do |book| %>
-
-  <%= @user.name %>
-  <%= attachment_book_tag @user, :book_image, :fill, 100, 100,format:'jpeg' , fallback: "no_image.jpg" %>
-  <% if @user.id == current_user.id %>
-   <p><%= link_to "プロフィール編集" edit_user_path(@user)%></p>
+<div class = "body">
+  <div class = "container">
+	<p id ="notice">Signed in successully</p>
+  <div class = "row">
+  <div class = "col-xs-3">
+	<h2>User info</h2>
+      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100,format:'jpeg' %>
+  <table class = "table">
+	<tbody>
+	  <tr>
+		  <th>name</th>
+		  <th><%= @user.name %></th>
+	  </tr>
+	  <tr>
+		  <th>introduction</th>
+		  <th><%= @user.introduction %></th>
+	  </tr>
+	</tbody>
+  </table>
+  <div class = "row">
+    <% if @user.id == current_user.id %>
+  	<%= link_to"edit", edit_user_path(@user) %>
   <% end %>
+  </div>
 
-<%= paginate @books %>
+<h2>New book</h2>
+
+<% form_for (@book) do |f| %>
+<div class ="field row">
+  <label for ="book_title">Title</label>
+  <%= f.text_field :title %>
+</div>
+
+<div class = "field row">
+  <label for="book_opiniion">Opinion</label>
+  <textarea class="col-xs-12 book_body" name="book[body]" id = "book_body">
+  </textarea>
+  <%= f.text_area :body %>
+</div>
+
+<div class = "actions row">
+	<input type="submit" name="commit" value="Create Book" class="btn btn-primary col-xs-12" data-disable-with="Create Book">
+<%= f.submit '投稿' %>
+</div>
+<% end %>
+
+<h2>Books</h2>
+  <table class ="table table-hover table-inverse">
+  <thead>
+  <tr>
+	<th>Title</th>
+	<th>Opinion</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr>
+	<td><%= attachment_image_tag @user, :profile_image, :fill, 20,20,format:'jpeg', fallback:"" %>
+	</td>
+    <td><%= @book.body %></td>
+  </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
