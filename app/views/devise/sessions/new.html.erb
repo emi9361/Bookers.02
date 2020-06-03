@@ -1,9 +1,20 @@
 <h2>Log in</h2>
 
+ <% if @user.errors.any? %>
+      <div class = "edit_error_box">
+        <h2><%= @user.errors.count %> errors prohibited this book from being saved:</h2>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+        <li class = "edit_errors-msg"><%= message %></li>
+      <% end %>
+        </ul>
+      </div>
+    <% end %>
+
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.email_field :name, autofocus: true, autocomplete: "email" %>
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
   </div>
 
   <div class="field">

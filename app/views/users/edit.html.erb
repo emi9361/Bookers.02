@@ -1,10 +1,19 @@
 
 <div class ="body">
 	<div class ="container">
-</div>
     <p id ='notice'></p>
-  <h2>User info</h2>
-  <%= form_for (@user) do |f| %>
+    <h2>User info</h2>
+    <%= form_for (@user) do |f| %>
+
+    <% if @user.errors.any? %>
+    <div id = "error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this product from being saved:</h2>
+      <ul><% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    <% end %>
+    </div>
 
 <div class = "field">
     <label for = "user_name">Name</label>
@@ -12,21 +21,19 @@
 </div>
 
 <div class = "field">
-<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback:"" %>
 <label for = "user_image">Image</label>
+  <%= f.attachment_field :profile_image %>
 </div>
-
+<br>
 <div class = "field">
 <label for = "user_introduction">Introduction</label>
-<%= f.attachment_field :profile_image %>
+  <%= f.text_area :introduction, autofocus: true %>
 </div>
 
 <div class = "actions">
-  <% if @user.id == current_user.id %>
-  <%= f.submit "Update User", user_path(@user.id) %>
+  <%= f.submit "Update User" %>
 </div>
-</form>
 </div>
 <% end %>
+</div>
 
-<% end %>
