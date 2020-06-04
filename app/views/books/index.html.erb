@@ -1,6 +1,15 @@
 <div class = "body">
   <div class = "container">
     <div class = "row">
+       <% if @book.errors.any? %>
+    <div id = "error_explanation">
+      <h2><%= pluralize(@book.errors.count, "error") %> prohibited this product from being saved:</h2>
+      <ul><% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    <% end %>
+    </div>
       <div class = "col-xs-3">
         <h2>User info</h2>
         <%= attachment_image_tag @user, :profile_image, :fill,40,40, fallback:"noimage.png",size:"100x100" %>

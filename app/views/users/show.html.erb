@@ -1,12 +1,10 @@
 <div class = "body">
   <div class = "container">
     <div class = "row">
-      <div class = "col-xs-3">
-
-        <% if flash[:notice] %>
+       <% if flash[:notice] %>
          <p><%= flash[:notice ]%></p>
         <% end %>
-
+      <div class = "col-xs-3">
 	      <h2>User info</h2>
         <%= attachment_image_tag @user,:profile_image, :fill,40,40, fallback:"noimage.png",size:"100x100" %>
 
